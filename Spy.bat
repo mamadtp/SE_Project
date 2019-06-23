@@ -76,6 +76,8 @@ IF %ERRORLEVEL% EQU 0 (
 echo Windows Update: >> spy.txt
 net start | findstr /c:"Windows Update"  >> spy.txt
 
+
+
 setlocal
 echo UAC Status: >> spy.txt
 REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ /v EnableLUA | findstr /c:"0x1" > temp.txt
@@ -87,6 +89,32 @@ if "%var%"=="    EnableLUA    REG_DWORD    0x1" (
 )
 del temp.txt
 endlocal
+
+
+
+
+
+setlocal
+echo Password Status: >> spy.txt
+net user %username% | find "Password expires" > temp.txt
+set /p var2=< temp.txt
+if "%var2%"=="Password expires             Never" (
+    echo Password is Enable >> spy.txt
+) else (
+    echo Password is not Enable >> spy.txt
+)
+del temp.txt
+endlocal
+
+
+
+
+
+
+
+
+
+
 
 
 

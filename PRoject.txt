@@ -1,9 +1,0 @@
-systeminfo
-diskpart
-
-//motherboard detail
-wmic baseboard get product,Manufacturer,version,serialnumber
-
-//ram detail
-wmic MEMORYCHIP get BankLabel, DeviceLocator, Capacity, informationSpeed ”
-systeminfo | findstr /C:”Total Physical Memory”
